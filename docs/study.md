@@ -4,45 +4,103 @@ pageClass: routes
 
 # 学习
 
-## eLife
+## 51VOA 美国之音
 
-### 最新成果
+### 频道
 
-#### 综合
+<Route author="guhuaijin" example="/51voa/address" path="/51voa/:channel" :paramsDesc="['频道名称']"/>
 
-<Route author="emdoe" example="/elife/latest" path="/elife/latest" />
+| `:channel`  | 对应网站栏目                                 |
+| ----------- | -------------------------------------------- |
+| standard    | 常速英语 (VOA Standard English)              |
+| archive     | 常速英语存档 (VOA Standard English Archives) |
+| technology  | 科技报道 (Technology Report)                 |
+| daily       | 今日美国 (This is America)                   |
+| sciences    | 科技报道 (Science in the News)               |
+| health      | 健康报道 (Health Report)                     |
+| education   | 教育报道 (Education Report)                  |
+| economics   | 经济报道 (Economics Report)                  |
+| culture     | 文化艺术 (American Mosaic)                   |
+| events      | 时事新闻 (In the News)                       |
+| stories     | 美国故事 (American Stories)                  |
+| words       | 词汇掌故 (Words And Their Stories)           |
+| trending    | 今日热点 (Trending Today)                    |
+| magazine    | 新闻杂志 (AS IT IS)                          |
+| grammar     | 日常语法 (Everyday Grammar)                  |
+| queries     | 名师答疑 (Ask a Teacher)                     |
+| history     | 美国历史 (U.S. History)                      |
+| park        | 国家公园 (America's National Parks)          |
+| president   | 美国总统 (America's Presidents)              |
+| agriculture | 农业报道 (Agriculture Report)                |
+| exploration | 自然探索 (Explorations)                      |
+| people      | 美国人物 (People in America)                 |
+| bilingual   | 双语新闻 (Bilingual News)                    |
+| address     | 总统演讲 (President Address)                 |
 
-#### 细分领域
+## CTFHub Calendar
 
-<RouteEn author="emdoe" example="/elife/cell-biology" path="/elife/:subject" :paramsDesc="['方向名称', '请在主页获取']" />
+### 查询国内外 CTF 赛事信息
 
-## Nature
+<Route author="frankli0324" example="/ctfhub/calendar" 
+    path="/ctfhub/calendar/:limit?/:form?/:class?/:title?" 
+    :paramsDesc="['通过CTF赛事名称过滤', '一个整数，筛选最近的limit场比赛', '比赛形式', '比赛类型']">
 
-### Latest Research
+| `:class` | 类型                             |
+| :------: | -------------------------------- |
+|     0    | Jeopardy[解题]                   |
+|     1    | Attack with Defense[AwD 攻防]    |
+|     2    | Robo Hacking Game[RHG AI 自动化] |
+|     3    | Real World[RW 真实世界]          |
+|     4    | King of The Hill[KoH 抢占山头]   |
+|     5    | Mix[混合]                        |
 
-#### Nature
+> class 以 <https://api.ctfhub.com/User_API/Event/getType> 的返回结果为准
 
-<Route author="emdoe" example="/nature/research" path="/nature/research" />
+| `:form` | 形式   |
+| :-----: | ------ |
+|    0    | 线上赛 |
+|    1    | 线下赛 |
 
-#### Nature Machine Intelligence
+</Route>
 
-<Route author="LogicJake" example="/nature/natmachintell/research" path="/nature/natmachintell/research" />
+## gradCafe
 
-#### Nature Neuroscience
+### gradCafe result
 
-<Route author="emdoe" example="/nature/neuroscience/research" path="/nature/neuroscience/research" />
+<Route author="liecn" example="/gradcafe/result" path="/gradcafe/result" />
 
-## Proceedings of The National Academy of Sciences
+### gradCafe result by key words
 
-### 最新文章
+<Route author="liecn" example="/gradcafe/result/computer" path="/gradcafe/result/:type" :paramsDesc="['按关键词进行搜索，如 computer']"/>
 
-#### 全部
+## NEEA 中国教育考试网
 
-<Route author="emdoe" example="/pnas/latest" path="/pnas/latest" />
+### 国家教育考试
 
-#### 根据领域分类
+<Route author="SunShinenny" example="/neea/gaokao" path="/neea/:type" :paramsDesc="['类别，如 gaokao']"/>
 
-<Route author="emdoe" example="/pnas/Applied Mathematics" path="/pnas/:topic" :paramsDesc="['领域名称','可从 pnas.org 获得']" />
+| `:type`  | 类别名称           |
+| -------- | ------------------ |
+| gaokao   | 普通高考           |
+| chengkao | 成人高考           |
+| yankao   | 研究生考试         |
+| zikao    | 自学考试           |
+| ntce     | 中小学教师资格考试 |
+
+### 社会证书考试
+
+<Route author="SunShinenny" example="/neea/cet" path="/neea/:type" :paramsDesc="['类别，如 cet']"/>
+
+| `:type` | 类别名称                      |
+| ------- | ----------------------------- |
+| cet     | 全国四六级（CET）             |
+| ncre    | 全国计算机等级考试（NCRE）    |
+| nit     | 全国计算机应用水平考试（NIT） |
+| pets    | 全国英语等级考试 (PETS)       |
+| wsk     | 全国外语水平考试 (WSK)        |
+| ccpt    | 书画等级考试 (CCPT)           |
+| wsk     | 全国外语水平考试 (WSK)        |
+| mets    | 医护英语水平考试 (METS)       |
 
 ## X-MOL 平台
 
@@ -50,28 +108,55 @@ pageClass: routes
 
 <Route author="cssxsh" example="/x-mol/news/3" path="/x-mol/news/:tag?" :paramsDesc="['数字编号，可从新闻列表URL得到。为空时从新闻主页获取新闻。']" />
 
-### 期刊
+## XMind
 
-<Route author="cssxsh" example="/x-mol/paper/0/9" path="/x-mol/paper/:type/:magazine" :paramsDesc="['类别','机构，两个参数都可从期刊URL获取。']" />
+### Mindmap Gallery
 
-## 谷歌学术
+<Route author="nczitzk" example="/xmind/mindmap" path="/xmind/mindmap/:lang?" :paramsDesc="['语言代码，见下表，默认为所有语言']">
 
-### 谷歌学术关键词更新
-
-<Route author="HenryQW" example="/google/scholar/data+visualization" path="/google/scholar/:query" :paramsDesc="['查询语句, 支持「简单」和「高级」两种模式:']" anticrawler="1">
-
-1. 简单模式, 例如「data visualization」, <https://rsshub.app/google/scholar/data+visualization>.
-2. 高级模式, 前往 [Google Scholar](https://scholar.google.com/schhp?hl=zh-cn&as_sdt=0,5), 点击左上角, 选择高级搜索并提交查询. 此时 URL 应为: <https://scholar.google.com/scholar?as_q=data+visualization&as_epq=&as_oq=&as_eq=&as_occt=any&as_sauthors=&as_publication=&as_ylo=2018&as_yhi=&hl=zh-CN&as_sdt=0%2C5>, 复制`https://scholar.google.com/scholar?`后的所有语句作为本路由的查询参数. 例子所对应的完整路由为<https://rsshub.app/google/scholar/as_q=data+visualization&as_epq=&as_oq=&as_eq=&as_occt=any&as_sauthors=&as_publication=&as_ylo=2018&as_yhi=&hl=zh-CN&as_sdt=0%2C5>.
+| English | Español | Deutsch | Français | 中文 | 日本語 |
+| ------- | ------- | ------- | -------- | ---- | ------ |
+| en      | es      | de      | fr       | zh   | jp     |
 
 </Route>
 
-### 谷歌学术作者引用更新
+## 唧唧堂
 
-<Route author="KellyHwong" example="/google/citations/mlmE4JMAAAAJ" path="/google/citations/:id" anticrawler="1">
+### 论文
 
-路由中的参数 id，即用户谷歌学术引用页面 url 中的 id，如 https://scholar.google.com/citations?hl=zh-CN&user=mlmE4JMAAAAJ 中 user= 后的 mlmE4JMAAAAJ。
+<Route author="xfangbao" example="/jijitang/publication" path="/jijitang/publication/" />
+
+### 文档
+
+<Route author="xfangbao" example="/jijitang/article/latest" path="/jijitang/article/:id" :paramsDesc="['类别，latest 或者 recommand']"/>
+
+## 金山词霸
+
+### 每日一句
+
+<Route author="mashirozx" example="/iciba/7/poster" path="/iciba/:days?/:img_type?" :paramsDesc="['展示的条目数（最小1，最大7，默认1，只展示当天的条目）', '图片格式']">
+
+| `:img_type` | 图片格式 |
+| ----------- | -------- |
+| original    | 原图     |
+| medium      | 尺寸优化 |
+| thumbnail   | 缩略图   |
+| poster      | 文艺海报 |
 
 </Route>
+
+## 领研
+
+### 论文
+
+<Route author="yech1990" example="/linkresearcher/category=theses&subject=生物" path="/linkresearcher/theses/:param" supportScihub="1" :paramsDesc="['参数，如 subject=生物']"/>
+
+| `:param` | 举例            | 定义                                 |
+| -------- | --------------- | ------------------------------------ |
+| category | category=thesis | **必填**，theses/information/careers |
+| subject  | subject = 生物  | 可置空                               |
+| columns  | columns = 健康  | 可置空                               |
+| query    | query = 病毒    | 可置空                               |
 
 ## 码农周刊
 
@@ -98,6 +183,62 @@ pageClass: routes
 | 13       | 22         | 28       | 4        | 19       | 25         | 37       | 49           | 52       |
 
 </Route>
+
+## 思维导图社区
+
+### 热门导图
+
+<Route author="nczitzk" example="/edrawsoft/mindmap/1/PV/DESC/CN/1" path="/edrawsoft/mindmap/:classId?/:order?/:sort?/:lang?/:price?/:search?" :paramsDesc="['分类编号，见下表，默认为全部分类', '排序参数，`PV` 指 最多浏览，`TIME` 指 最新发布，`LIKE` 指 最多点赞，默认为 `PV` 即 最多浏览', '排序方式，`DESC` 指 降序，`ASC` 指 升序，默认为 `DESC` 即 降序', '模板语言，默认为 `CN`', '是否免费，`1` 指 全部，`2` 指 免费，`3` 指 付费，`4` 指 会员免费，默认为 `1` 即 全部', '搜索关键词，默认为空']">
+
+::: tip 提示
+
+不支持分类搜索和自定义搜索排序，即 `search` 参数不为空时，其他参数不起作用。
+
+:::
+
+分类编号如下表（选择全部则填入编号 0）
+
+| 职业技能 | 企业家 / 管理者 | 程序员 | 产品经理 | 运营 / 市场营销 | 人事 / 培训 / 行政 | 法律 / 法务 | 医学 / 药学 / 保健 | 银行 / 金融 / 证券 / 保险 | 电商 / 微商 / 零售 | 编辑 / 媒体 / 出版 | 机械 / 电子 / 制造业 | 城市 / 建筑 / 房地产 | 其他技能 |
+| -------- | --------------- | ------ | -------- | --------------- | ------------------ | ----------- | ------------------ | ------------------------- | ------------------ | ------------------ | -------------------- | -------------------- | -------- |
+| 1        | 7               | 8      | 9        | 10              | 11                 | 12          | 13                 | 14                        | 15                 | 16                 | 17                   | 58                   | 59       |
+
+| 考研考证 | 研究生考试 | 建考 | 法考 | 教师资格证 | 公考 | 英语 | 医考 | 会计师 | 计算机 | 专升本 |
+| -------- | ---------- | ---- | ---- | ---------- | ---- | ---- | ---- | ------ | ------ | ------ |
+| 2        | 18         | 19   | 20   | 21         | 22   | 23   | 24   | 25     | 26     | 27     |
+
+| 生活娱乐 | 体育 | 音乐 | 影视 | 旅游 | 游戏 | 兴趣 | 生活 |
+| -------- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| 3        | 29   | 30   | 31   | 32   | 33   | 34   | 56   |
+
+| 校园教育 | 大学 | 高中 | 初中 | 小学 | 教育 |
+| -------- | ---- | ---- | ---- | ---- | ---- |
+| 4        | 35   | 36   | 37   | 38   | 39   |
+
+| 读书笔记 | 文学作品 | 心灵成长 | 经管知识 | 终身学习 | 通用知识 | 知识栏目 |
+| -------- | -------- | -------- | -------- | -------- | -------- | -------- |
+| 5        | 40       | 41       | 42       | 43       | 44       | 45       |
+
+| 创意脑图 | 长图 | 鱼骨图 | 时间线 | 圆圈图 | 组织结构 | 树状图 | 流程图 |
+| -------- | ---- | ------ | ------ | ------ | -------- | ------ | ------ |
+| 6        | 46   | 47     | 48     | 49     | 50       | 51     | 57     |
+
+</Route>
+
+## 搜韵网
+
+### 诗词日历
+
+<Route author="nczitzk" example="/souyun/today" path="/souyun/today"/>
+
+## 网易公开课
+
+### 精品课程
+
+<Route author="hoilc" example="/open163/vip" path="/open163/vip" radar="1" rssbud="1"/>
+
+### 最新课程
+
+<Route author="hoilc" example="/open163/latest" path="/open163/latest" radar="1" rssbud="1"/>
 
 ## 下厨房
 
@@ -157,11 +298,17 @@ pageClass: routes
 
 学科分类
 
-| 全部 | 计算机 | 经管·会计 | 创业 | 电子 | 工程 | 环境·地球 | 医学·健康 | 生命科学 | 数学 | 物理 | 化学 | 社科·法律 | 文学 | 历史 | 哲学 | 艺术·设计 | 外语 | 教育 | 其他 | 大学先修课 | 公共管理 | 建筑 | 职场 | 全球胜任力 |
-| ---- | ------ | --------- | ---- | ---- | ---- | --------- | --------- | -------- | ---- | ---- | ---- | --------- | ---- | ---- | ---- | --------- | ---- | ---- | ---- | ---------- | -------- | ---- | ---- | ---------- |
-| -1   | 117    | 118       | 119  | 120  | 121  | 122       | 123       | 124      | 125  | 126  | 127  | 128       | 129  | 130  | 131  | 132       | 133  | 134  | 135  | 201        | 2550     | 2783 | 2952 | 6200       |
+| 全部 | 计算机 | 经管・会计 | 创业 | 电子 | 工程 | 环境・地球 | 医学・健康 | 生命科学 | 数学 | 物理 | 化学 | 社科・法律 | 文学 | 历史 | 哲学 | 艺术・设计 | 外语 | 教育 | 其他 | 大学先修课 | 公共管理 | 建筑 | 职场 | 全球胜任力 |
+| ---- | ------ | ---------- | ---- | ---- | ---- | ---------- | ---------- | -------- | ---- | ---- | ---- | ---------- | ---- | ---- | ---- | ---------- | ---- | ---- | ---- | ---------- | -------- | ---- | ---- | ---------- |
+| -1   | 117    | 118        | 119  | 120  | 121  | 122        | 123        | 124      | 125  | 126  | 127  | 128        | 129  | 130  | 131  | 132        | 133  | 134  | 135  | 201        | 2550     | 2783 | 2952 | 6200       |
 
 </Route>
+
+## 英中协会
+
+### 奖学金
+
+<Route author="HenryQW" example="/gbcc/trust" path="/gbcc/trust" />
 
 ## 语雀
 
@@ -175,8 +322,51 @@ pageClass: routes
 
 </Route>
 
-## 中国大学 MOOC(慕课)
+## 知識分子
+
+### 新聞
+
+<Route author="yech1990" example="/zhishifenzi/news/ai" path="/zhishifenzi/news/:type" :paramsDesc="['类别，如 ai']"/>
+
+| `:type`   | 类别名称 |
+| --------- | -------- |
+| biology   | 生物     |
+| medicine  | 医药     |
+| ai        | 人工智能 |
+| physics   | 物理     |
+| chymistry | 化学     |
+| astronomy | 天文     |
+| others    | 其他     |
+
+> 参数置空（`/zhishifenzi/news`）获取所有类别
+
+### 深度
+
+<Route author="yech1990" example="/zhishifenzi/depth" path="/zhishifenzi/depth" />
+
+### 创新
+
+<Route author="yech1990" example="/zhishifenzi/innovation/company" path="/zhishifenzi/innovation/:type" :paramsDesc="['类别，如 company']"/>
+
+| `:type`       | 类别名称 |
+| ------------- | -------- |
+| ~~multiple~~  | ~~综合~~ |
+| company       | 公司     |
+| product       | 产品     |
+| technology    | 技术     |
+| ~~character~~ | ~~人物~~ |
+| policy        | 政策     |
+
+> 参数置空（`/zhishifenzi/innovation`）获取所有类别
+
+## 中国大学 MOOC (慕课)
 
 ### 最新
 
 <Route author="xyqfer" example="/icourse163/newest" path="/icourse163/newest" />
+
+## 中国人事考试网
+
+### 通知公告
+
+<Route author="nczitzk" example="/cpta/notice" path="/cpta/notice" />
